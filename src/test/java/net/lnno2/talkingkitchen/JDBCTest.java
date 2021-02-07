@@ -20,6 +20,8 @@ public class JDBCTest {
 			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/talkingkitchen?useSSL=false&serverTimezone=Asia/Seoul","ttk_dev","ttk_dev");
 			log.info(con.toString());
 			
+			log.info("git test");
+			
 			con.close();
 			con = null;
 			

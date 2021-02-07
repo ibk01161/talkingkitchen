@@ -32,6 +32,7 @@ public class RootConfig {
 		
 		HikariDataSource dataSource = new HikariDataSource(hikariConfig);
 		
+		
 		return dataSource;
 		
 	}
