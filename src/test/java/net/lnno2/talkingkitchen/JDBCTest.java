@@ -21,6 +21,8 @@ public class JDBCTest {
 			log.info(con.toString());
 			
 			log.info("git test");
+			log.info("git test2");
+			
 			
 			con.close();
 			con = null;
