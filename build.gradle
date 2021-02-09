@@ -52,6 +52,8 @@ dependencies {
 	providedCompile 'javax.servlet:javax.servlet-api'
 	//providedCompile 'javax.servlet.jsp:javax.servlet.jsp-api'
 	
+	// log4jdbc-log4j2 라이브러리
+	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
 
 		
 }
@@ -63,6 +65,7 @@ test {
 
 bootRun {
     jvmArgs = ["-Dfile.encoding=UTF-8", "-Duser.timezone=GMT+09:00"]
+    args = ["--spring.config.location=classpath:/logging.properties"]
 }
 
 war {

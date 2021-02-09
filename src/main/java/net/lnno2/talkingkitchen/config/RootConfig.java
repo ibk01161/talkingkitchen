@@ -2,6 +2,11 @@ package net.lnno2.talkingkitchen.config;
 
 import javax.sql.DataSource;
 
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -9,20 +14,31 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
+@MapperScan(basePackages = {"net.lnno2.talkingkitchen.mapper"})
 public class RootConfig {
 	
+	@Autowired
+	private ApplicationContext applicationContext;
+	
+	// Hikari 설정
 	@Bean
 	public DataSource dataSource() {
 		
 		HikariConfig hikariConfig = new HikariConfig();
-		hikariConfig.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		hikariConfig.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/talkingkitchen?useSSL=false&serverTimezone=Asia/Seoul");
+//		hikariConfig.setDriverClassName("com.mysql.cj.jdbc.Driver");
+		// log4jdbc 사용
+		hikariConfig.setDriverClassName("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
+//		hikariConfig.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/talkingkitchen?useSSL=false&serverTimezone=Asia/Seoul");
+		// log4jdbc 사용
+		hikariConfig.setJdbcUrl("jdbc:log4jdbc:mysql://127.0.0.1:3306/talkingkitchen?useSSL=false&serverTimezone=Asia/Seoul");
 		hikariConfig.setUsername("ttk_dev");
 		hikariConfig.setPassword("ttk_dev");
-		hikariConfig.setMinimumIdle(5);
+		// 아무런 일을 하지 않아도 설정 값 size로 커넥션들을 유지해주는 설정
+		hikariConfig.setMinimumIdle(1);
 		
-		// test Query
-		hikariConfig.setConnectionTestQuery("SELECT sysdate FROM dual");
+		// 데이터베이스 연결이 여전히 활성화 되어있는지 확인하기 위해 pool에서 connection을 제공하기 전 실행되는 쿼리
+		hikariConfig.setConnectionTestQuery("SELECT sysdate() FROM dual");
+		// 사용자가 pool의 이름을 지정 (로깅 및 JMX 관리 콘솔에 표시되어 풀 구성을 식별)
 		hikariConfig.setPoolName("springHikariCP");
 		
 		hikariConfig.addDataSourceProperty("dataSource.cachePrepStmts", "true");
@@ -32,8 +48,20 @@ public class RootConfig {
 		
 		HikariDataSource dataSource = new HikariDataSource(hikariConfig);
 		
-		
 		return dataSource;
+		
+	}
+	
+	
+	// SQLSessionFactory 설정
+	@Bean
+	public SqlSessionFactory sqlSessionFactory() throws Exception {
+		
+		SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
+		sqlSessionFactory.setDataSource(dataSource());
+		// resources에 있는 mapper xml 경로 설정 (classpath는 scr/main/resources를 뜻함
+		sqlSessionFactory.setMapperLocations(applicationContext.getResources("classpath:mapper/*.xml"));
+		return (SqlSessionFactory) sqlSessionFactory.getObject();
 		
 	}
 	
