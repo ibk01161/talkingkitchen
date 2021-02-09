@@ -20,25 +20,25 @@ public class RootConfig {
 	@Autowired
 	private ApplicationContext applicationContext;
 	
-	// Hikari ¼³Á¤
+	// Hikari ì„¤ì •
 	@Bean
 	public DataSource dataSource() {
 		
 		HikariConfig hikariConfig = new HikariConfig();
 //		hikariConfig.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		// log4jdbc »ç¿ë
+		// log4jdbc ì‚¬ìš©
 		hikariConfig.setDriverClassName("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
 //		hikariConfig.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/talkingkitchen?useSSL=false&serverTimezone=Asia/Seoul");
-		// log4jdbc »ç¿ë
+		// log4jdbc ì‚¬ìš©
 		hikariConfig.setJdbcUrl("jdbc:log4jdbc:mysql://127.0.0.1:3306/talkingkitchen?useSSL=false&serverTimezone=Asia/Seoul");
 		hikariConfig.setUsername("ttk_dev");
 		hikariConfig.setPassword("ttk_dev");
-		// ¾Æ¹«·± ÀÏÀ» ÇÏÁö ¾Ê¾Æµµ ¼³Á¤ °ª size·Î Ä¿³Ø¼ÇµéÀ» À¯ÁöÇØÁÖ´Â ¼³Á¤
+		// ì•„ë¬´ëŸ° ì¼ì„ í•˜ì§€ ì•Šì•„ë„ ì„¤ì • ê°’ sizeë¡œ ì»¤ë„¥ì…˜ë“¤ì„ ìœ ì§€í•´ì£¼ëŠ” ì„¤ì •
 		hikariConfig.setMinimumIdle(1);
 		
-		// µ¥ÀÌÅÍº£ÀÌ½º ¿¬°áÀÌ ¿©ÀüÈ÷ È°¼ºÈ­ µÇ¾îÀÖ´ÂÁö È®ÀÎÇÏ±â À§ÇØ pool¿¡¼­ connectionÀ» Á¦°øÇÏ±â Àü ½ÇÇàµÇ´Â Äõ¸®
+		// ë°ì´í„°ë² ì´ìŠ¤ ì—°ê²°ì´ ì—¬ì „íˆ í™œì„±í™” ë˜ì–´ìˆëŠ”ì§€ í™•ì¸í•˜ê¸° ìœ„í•´ poolì—ì„œ connectionì„ ì œê³µí•˜ê¸° ì „ ì‹¤í–‰ë˜ëŠ” ì¿¼ë¦¬
 		hikariConfig.setConnectionTestQuery("SELECT sysdate() FROM dual");
-		// »ç¿ëÀÚ°¡ poolÀÇ ÀÌ¸§À» ÁöÁ¤ (·Î±ë ¹× JMX °ü¸® ÄÜ¼Ö¿¡ Ç¥½ÃµÇ¾î Ç® ±¸¼ºÀ» ½Äº°)
+		// ì‚¬ìš©ìê°€ poolì˜ ì´ë¦„ì„ ì§€ì • (ë¡œê¹… ë° JMX ê´€ë¦¬ ì½˜ì†”ì— í‘œì‹œë˜ì–´ í’€ êµ¬ì„±ì„ ì‹ë³„)
 		hikariConfig.setPoolName("springHikariCP");
 		
 		hikariConfig.addDataSourceProperty("dataSource.cachePrepStmts", "true");
@@ -53,13 +53,13 @@ public class RootConfig {
 	}
 	
 	
-	// SQLSessionFactory ¼³Á¤
+	// SQLSessionFactory ì„¤ì •
 	@Bean
 	public SqlSessionFactory sqlSessionFactory() throws Exception {
 		
 		SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
 		sqlSessionFactory.setDataSource(dataSource());
-		// resources¿¡ ÀÖ´Â mapper xml °æ·Î ¼³Á¤ (classpath´Â scr/main/resources¸¦ ¶æÇÔ
+		// resourcesì— ìˆëŠ” mapper xml ê²½ë¡œ ì„¤ì • (classpathëŠ” scr/main/resourcesë¥¼ ëœ»í•¨)
 		sqlSessionFactory.setMapperLocations(applicationContext.getResources("classpath:mapper/*.xml"));
 		return (SqlSessionFactory) sqlSessionFactory.getObject();
 		
