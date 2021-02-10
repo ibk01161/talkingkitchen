@@ -1,5 +1,7 @@
 package net.lnno2.talkingkitchen.config;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -8,10 +10,12 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
+@ComponentScan({"net.lnno2.talkingkitchen.controller"})
 public class ServletConfig extends WebMvcConfigurationSupport {
 
 	// 화면 처리 방식 설정 (jsp) -> '/WEB-INF/views'라는 폴더 내 이름들을 사용하고, '.jsp' 파일 사용
 	// 오류시 @Bean 추가하기
+	@Bean
 	public ViewResolver mvcViewResolver() {
 		InternalResourceViewResolver bean = new InternalResourceViewResolver();
 		bean.setViewClass(JstlView.class);
