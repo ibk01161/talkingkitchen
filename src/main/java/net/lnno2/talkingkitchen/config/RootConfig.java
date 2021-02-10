@@ -13,6 +13,9 @@ import org.springframework.context.annotation.Configuration;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Configuration
 @MapperScan(basePackages = {"net.lnno2.talkingkitchen.mapper"})
 public class RootConfig {
@@ -24,6 +27,7 @@ public class RootConfig {
 	@Bean
 	public DataSource dataSource() {
 		
+		log.info("datasource...");
 		HikariConfig hikariConfig = new HikariConfig();
 //		hikariConfig.setDriverClassName("com.mysql.cj.jdbc.Driver");
 		// log4jdbc 사용
@@ -57,6 +61,7 @@ public class RootConfig {
 	@Bean
 	public SqlSessionFactory sqlSessionFactory() throws Exception {
 		
+		log.info("sqlsession...");
 		SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
 		sqlSessionFactory.setDataSource(dataSource());
 		// resources에 있는 mapper xml 경로 설정 (classpath는 scr/main/resources를 뜻함)
