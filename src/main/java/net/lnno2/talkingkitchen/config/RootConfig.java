@@ -64,6 +64,8 @@ public class RootConfig {
 		log.info("sqlsession...");
 		SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
 		sqlSessionFactory.setDataSource(dataSource());
+		// mybatis-config 설정 적용
+		sqlSessionFactory.setConfigLocation(applicationContext.getResource("classpath:mybatis-config.xml"));
 		// resources에 있는 mapper xml 경로 설정 (classpath는 scr/main/resources를 뜻함)
 		sqlSessionFactory.setMapperLocations(applicationContext.getResources("classpath:mapper/*.xml"));
 		return (SqlSessionFactory) sqlSessionFactory.getObject();

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.lnno2.talkingkitchen.mapper.RecipeMapper">
+
+	<insert id="insertRecipe">
+		INSERT INTO TKK_RECIPE (REC_TITLE, REC_INTRO, REC_PORTION, REC_TIME, REC_LEVEL, REC_IMG_PATH, USER_NO)
+		VALUES (#{recTitle}, #{recIntro}, #{recPortion}, #{recTime}, #{recLevel}, 'test', '1')
+	</insert>
+
+</mapper>

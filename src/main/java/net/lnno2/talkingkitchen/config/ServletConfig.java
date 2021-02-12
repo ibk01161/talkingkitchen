@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"net.lnno2.talkingkitchen.controller"})
+@ComponentScan(basePackages = {"net.lnno2.talkingkitchen.controller", "net.lnno2.talkingkitchen.service"})
 public class ServletConfig implements WebMvcConfigurer {
 	
 	// 화면 처리 방식 설정 (jsp) -> '/WEB-INF/views/'라는 폴더 내 이름들을 사용하고, '.jsp' 파일 사용
