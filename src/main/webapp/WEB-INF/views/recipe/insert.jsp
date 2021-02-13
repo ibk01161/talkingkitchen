@@ -3,13 +3,11 @@
 <%@ include file="../commons/header.jsp" %>
 <body>
 
-recipe insert....
-
 <form method="post" name="insert">
 
 	<div class="form-group">
 		<label for="rec_title">레시피 제목</label>
-      		<input type="text" class="form-control" id="rec_title" name="recTitle" placeholder="예) 소고기 미역국 끓이기">
+      	<input type="text" class="form-control" id="rec_title" name="recTitle" placeholder="예) 소고기 미역국 끓이기">
    </div>
    <p><br/><br/>
    <div class="form-group">
@@ -64,7 +62,7 @@ recipe insert....
    </p>
    
    <div class="form-group text-center">
-      <input type="button" class="btn btn-success btn-lg" id="insert_btn" value="등록">
+      <input type="submit" class="btn btn-success btn-lg" id="insert_btn" value="등록">
       <input type="button" value="취소"class="btn btn-danger btn-lg" id="insert_cancel"/>
    </div>
    
@@ -74,19 +72,23 @@ recipe insert....
 
 <script>
 
-	let f = document.insert;
+	//let f = document.insert;
 
-	$('#insert_btn').click(function(){
-	   	validate();
+// 	$('#insert_btn').click(function(){
+// 	   	validate();
+// 	});
+
+	$('#insert_cancel').click(function(){
+		location.href="/";
 	});
 
-	function validate(){
+// 	function validate(){
 		
-		f.method = 'POST';
-		f.action = 'insert';
-		f.submit();  
+// 		f.method = 'POST';
+// 		f.action = 'insert';
+// 		f.submit();  
 
-	}
+// 	}
 
 </script>
 
