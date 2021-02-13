@@ -34,7 +34,7 @@ public class RootConfig {
 		hikariConfig.setDriverClassName("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
 //		hikariConfig.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/talkingkitchen?useSSL=false&serverTimezone=Asia/Seoul");
 		// log4jdbc 사용
-		hikariConfig.setJdbcUrl("jdbc:log4jdbc:mysql://127.0.0.1:3306/talkingkitchen?useSSL=false&serverTimezone=Asia/Seoul");
+		hikariConfig.setJdbcUrl("jdbc:log4jdbc:mysql://127.0.0.1:3306/talkingkitchen?useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Seoul");
 		hikariConfig.setUsername("ttk_dev");
 		hikariConfig.setPassword("ttk_dev");
 		// 아무런 일을 하지 않아도 설정 값 size로 커넥션들을 유지해주는 설정

@@ -25,7 +25,6 @@ public class RecipeVO implements Serializable {
 	private String recPortion;
 	private String recTime;
 	private String recLevel;
-	private String recImgPath;
 	private double recRating;
 	private int recReadCnt;
 	private int recScrapCnt;

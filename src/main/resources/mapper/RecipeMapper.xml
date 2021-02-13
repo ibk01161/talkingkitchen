@@ -4,8 +4,8 @@
 <mapper namespace="net.lnno2.talkingkitchen.mapper.RecipeMapper">
 
 	<insert id="insertRecipe">
-		INSERT INTO TKK_RECIPE (REC_TITLE, REC_INTRO, REC_PORTION, REC_TIME, REC_LEVEL, REC_IMG_PATH, USER_NO)
-		VALUES (#{recTitle}, #{recIntro}, #{recPortion}, #{recTime}, #{recLevel}, 'test', '1')
+		INSERT INTO TKK_RECIPE (REC_TITLE, REC_INTRO, REC_CATEGORY1, REC_CATEGORY2, REC_CATEGORY3, REC_CATEGORY4, REC_PORTION, REC_TIME, REC_LEVEL, USER_NO)
+		VALUES (#{recTitle}, #{recIntro}, #{recCategory1}, #{recCategory2}, #{recCategory3}, #{recCategory4}, #{recPortion}, #{recTime}, #{recLevel}, '1')
 	</insert>
 
 </mapper>
