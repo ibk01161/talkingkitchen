@@ -1,7 +1,7 @@
 package net.lnno2.talkingkitchen.domain;
 
-import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.ibatis.type.Alias;
 
@@ -13,7 +13,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Alias("RecipeVO")
-public class RecipeVO implements Serializable {
+public class RecipeVO {
 
 	private long recNo;
 	private String recTitle;
@@ -33,4 +33,6 @@ public class RecipeVO implements Serializable {
 	private Date regDate;
 	private Date modDate;
 	
+	private List<RecipeIngredientVO> recipeIngrVoList;
+	private List<RecipeStepVO> recipeStepVoList;
 }

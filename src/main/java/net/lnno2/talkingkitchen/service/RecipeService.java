@@ -18,6 +18,8 @@ public class RecipeService {
 	
 	public void insertRecipe(RecipeVO recipeVO) throws Exception {
 		recipeMapper.insertRecipe(recipeVO);
+		recipeMapper.insertRecipeIngr(recipeVO);
+		recipeMapper.insertRecipeStep(recipeVO);
 		log.info("insert success....");
 	}
 

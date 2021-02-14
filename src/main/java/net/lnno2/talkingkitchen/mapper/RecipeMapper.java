@@ -11,4 +11,8 @@ public interface RecipeMapper {
 
 	void insertRecipe(RecipeVO recipeVO) throws SQLException;
 
+	void insertRecipeIngr(RecipeVO recipeVO) throws SQLException;
+
+	void insertRecipeStep(RecipeVO recipeVO) throws SQLException;
+
 }

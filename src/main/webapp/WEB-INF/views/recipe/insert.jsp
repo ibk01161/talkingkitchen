@@ -142,15 +142,15 @@
    		<div class='col-md-4 col-md-offset-2'>
    		<div class='form-group'>
    		<label class='sr-only' for='rec_ing'></label>
-   			<input type='text' class='form-control' name='ingrCode' id='ingr_code' placeholder='코드값' />
-   			<input type='text' class='form-control' name='ingrSub' id='ingr_sub' placeholder='재료' />
+   			<input type='text' class='form-control' name='recipeIngrVoList[0].ingrCode' id='ingr_code' placeholder='코드값' />
+   			<input type='text' class='form-control' name='recipeIngrVoList[0].ingrSub' id='ingr_sub' placeholder='재료' />
        </div>
        </div>
        
        <div class='col-md-4'>
        <div class='form-group'>
        <label class='sr-only' for='rec_quantity'></label>
-       		<input type='text' class='form-control' name='recIngrQnt' id='rec_ingr_qnt' placeholder='양   ex:200g' />
+       		<input type='text' class='form-control' name='recipeIngrVoList[0].recIngrQnt' id='rec_ingr_qnt' placeholder='양   ex:200g' />
        </div>
        </div>
    </div>
@@ -161,8 +161,8 @@
    		<div class='form-group'>
    		<label for='rec_step' class='col-sm-2 control-label'>Step</label>
    		<div class='col-sm-7'>
-   			<input type='text' id='step_no' name='stepNo' value='1' />
-   			<textarea class='form-control' rows='6' id='step_content' name='stepContent' placeholder='예) 당근을 작게 깍둑썰기 해주세요.'></textarea>
+   			<input type='text' id='step_no' name='recipeStepVoList[0].stepNo' value='1' />
+   			<textarea class='form-control' rows='6' id='step_content' name='recipeStepVoList[0].stepContent' placeholder='예) 당근을 작게 깍둑썰기 해주세요.'></textarea>
    		</div>
    		</div>
    		<p></p>
@@ -170,7 +170,7 @@
    		<div class='form-group'>
    		<label for='step_time' class='col-sm-2 control-label'>시간</label>
    		<div class='col-sm-5'>
-   		<input type='number' class='form-control' id='step_time' name='stepTime' placeholder='각 단계별 소요시간을 분 단위로 입력해주세요.'/>
+   		<input type='number' class='form-control' id='step_time' name='recipeStepVoList[0].stepTime' placeholder='각 단계별 소요시간을 분 단위로 입력해주세요.'/>
    		</div>
    		</div>
    	</div>
