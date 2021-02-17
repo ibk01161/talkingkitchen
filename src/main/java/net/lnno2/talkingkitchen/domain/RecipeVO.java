@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.type.Alias;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -32,6 +33,8 @@ public class RecipeVO {
 	private int recBad;
 	private Date regDate;
 	private Date modDate;
+	
+	private MultipartFile recImg;
 	
 	private List<RecipeIngredientVO> recipeIngrVoList;
 	private List<RecipeStepVO> recipeStepVoList;

@@ -3,7 +3,7 @@
 <%@ include file="../commons/header.jsp" %>
 <body>
 
-<form method="post" name="insert">
+<form method="post" name="insert" enctype="multipart/form-data">
 
 	<div class="form-group">
 		<label for="rec_title">레시피 제목</label>
@@ -137,6 +137,12 @@
    <p><br/><br/>
    </p>
    
+   <div class="form-group">
+   <label for="rec_img">파일 업로드</label>   
+      <input type="file" id="rec_img" name="recImg" >
+      <img class="thumbnail" id="rec_thumbnail" src="${app}/resources/img/pic.gif" width="200" height="200"/>   <!-- width="200" height="200" -->
+   </div><br/><br/>
+   
    <h1>재료</h1><br/>
    <div class='row'>
    		<div class='col-md-4 col-md-offset-2'>
@@ -173,6 +179,11 @@
    		<input type='number' class='form-control' id='step_time' name='recipeStepVoList[0].stepTime' placeholder='각 단계별 소요시간을 분 단위로 입력해주세요.'/>
    		</div>
    		</div>
+   		
+   		<div class='col-sm-5'>
+   		<input type='file' id='step_img' name='recipeStepVOList[0].stepImg' >
+   		<img class='thumbnail' id='step_thumbnail' src='${app}/resources/img/pic_plus.gif' />
+   		</div>
    	</div>
    
    <div class="form-group text-center">
@@ -203,6 +214,41 @@
 // 		f.submit();  
 
 // 	}
+
+	// 이미지 미리보기 (대표사진)
+	$('#rec_img').change(function() {
+		recReadUrl(this);
+	});
+
+	// 이미지 미리보기 (스탭사진)
+	$('#step_img').change(function() {
+		stepReadUrl(this);
+	});
+
+
+	function recReadUrl(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			
+			reader.onload = function(e) {
+				$('#rec_thumbnail').attr('src', e.target.result);
+			}
+
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+
+	function stepReadUrl(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			
+			reader.onload = function(e) {
+				$('#step_thumbnail').attr('src', e.target.result);
+			}
+
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
 
 </script>
 

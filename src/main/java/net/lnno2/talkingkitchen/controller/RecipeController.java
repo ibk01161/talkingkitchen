@@ -35,13 +35,11 @@ public class RecipeController {
 		
 		try {
 			recipeService.insertRecipe(recipeVO);
-			rttr.addFlashAttribute("msg", "success");
-			
+			rttr.addFlashAttribute("msg", "success");			
 		} catch (Exception e) {
 			log.info("recipe insert error!!! : " + e.getMessage());
 			rttr.addFlashAttribute("msg", "fail");
 		}
-		
 		
 		return "redirect:../recipe/success";
 		
