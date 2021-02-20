@@ -27,5 +27,13 @@ public class ServletConfig implements WebMvcConfigurer {
 		log.info("handlers...");
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
+	
+	// properties 설정 오류시 주석 풀기
+//	public CommonsMultipartResolver multipartResolver() {
+//		log.info("file size.....");
+//		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+//		multipartResolver.setMaxUploadSize(10485760);
+//		return multipartResolver;
+//	}
 
 }
