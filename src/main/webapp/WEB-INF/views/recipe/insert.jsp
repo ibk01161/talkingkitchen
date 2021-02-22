@@ -142,7 +142,7 @@
       <input type="file" id="rec_img" name="recImg" >
       <img class="thumbnail" id="rec_thumbnail" src="${app}/resources/img/pic.gif" width="200" height="200"/>   <!-- width="200" height="200" -->
    </div><br/><br/>
-   
+ <!--   
    <h1>재료</h1><br/>
    <div class='row'>
    		<div class='col-md-4 col-md-offset-2'>
@@ -185,12 +185,12 @@
    		<img class='thumbnail' id='step_thumbnail' src='${app}/resources/img/pic_plus.gif' />
    		</div>
    	</div>
-   
+   -->
    <div class="form-group text-center">
       <input type="submit" class="btn btn-success btn-lg" id="insert_btn" value="등록">
       <input type="button" value="취소"class="btn btn-danger btn-lg" id="insert_cancel"/>
    </div>
-   
+    
    </form>
    
 </body>
