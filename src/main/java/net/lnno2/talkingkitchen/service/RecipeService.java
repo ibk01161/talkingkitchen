@@ -1,6 +1,7 @@
 package net.lnno2.talkingkitchen.service;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -82,6 +83,10 @@ public class RecipeService {
 		
 		
 		log.info("RecipeStep insert success.....");
+	}
+
+	public List<RecipeVO> selectRecipe() throws Exception {
+		return recipeMapper.selectRecipe();
 	}
 
 	

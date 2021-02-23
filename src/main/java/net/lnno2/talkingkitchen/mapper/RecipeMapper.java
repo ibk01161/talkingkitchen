@@ -1,6 +1,7 @@
 package net.lnno2.talkingkitchen.mapper;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
@@ -17,6 +18,9 @@ public interface RecipeMapper {
 	void insertRecipeIngr(RecipeVO recipeVO) throws SQLException;
 
 	void insertRecipeStep(RecipeVO recipeVO) throws SQLException;
+
+	List<RecipeVO> selectRecipe() throws SQLException;
+
 
 	
 

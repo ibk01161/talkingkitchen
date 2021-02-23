@@ -38,4 +38,6 @@ public class RecipeVO {
 	
 	private List<RecipeIngredientVO> recipeIngrVoList;
 	private List<RecipeStepVO> recipeStepVoList;
+	
+	private AttachVO attachVO;
 }

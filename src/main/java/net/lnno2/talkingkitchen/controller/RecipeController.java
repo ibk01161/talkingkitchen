@@ -2,6 +2,7 @@ package net.lnno2.talkingkitchen.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,16 +44,15 @@ public class RecipeController {
 			rttr.addFlashAttribute("msg", "fail");
 		}
 		
-		return "redirect:../recipe/success";
+		return "redirect:../recipe/list";
 		
 	}
 	
 	// 리스트 출력
-	@GetMapping("/success")
-	public void recipeList() {
-		
-		log.info("recipe list....");
-		
+	@GetMapping("/list")
+	public void recipeList(Model model) throws Exception {
+		log.info("show recipe list....");
+		model.addAttribute("list", recipeService.selectRecipe());
 	}
 
 }

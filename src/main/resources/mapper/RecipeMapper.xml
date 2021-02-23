@@ -38,5 +38,12 @@
       		#{vo.stepNo}, #{vo.stepContent}, #{vo.stepTime}, #{recNo}
       	</foreach>
 	</insert>
+	
+	<select id="selectRecipe" resultType="RecipeVO">
+		SELECT R.REC_NO, R.REC_TITLE, R.REC_INTRO, R.REC_PORTION, R.REC_TIME, R.REC_LEVEL, R.REC_READ_CNT, R.REG_DATE, A.ATTACH_PATH AS "attachVO.attachPath", A.ATTACH_NAME AS "attachVO.attachName"
+		FROM TKK_RECIPE R INNER JOIN TKK_ATTACH A ON R.REC_NO = A.REC_NO
+		AND A.STEP_NO = '0'
+		ORDER BY REG_DATE DESC
+	</select>
 
 </mapper>
