@@ -9,9 +9,34 @@
 	</insert>
 	
 	<insert id="insertRecipeAttach">
+		<selectKey resultType="long" keyProperty="recNo" order="BEFORE">
+        	SELECT MAX(REC_NO) AS recNo FROM TKK_RECIPE
+      	</selectKey>
+	
 		INSERT INTO TKK_ATTACH (ATTACH_NAME, ATTACH_PATH, REC_NO, STEP_NO)
-		VALUES (#{attachName}, #{attachPath}, LAST_INSERT_ID(), #{stepNo})
+		VALUES (#{attachName}, #{attachPath}, #{recNo}, #{stepNo})
 	</insert>
 	
+	<insert id="insertRecipeIngr" parameterType="RecipeVO">
+		<selectKey resultType="long" keyProperty="recNo" order="BEFORE">
+        	SELECT MAX(REC_NO) AS recNo FROM TKK_RECIPE
+      	</selectKey>
+      	
+      	INSERT INTO TKK_RECIPE_INGR (REC_NO, INGR_CODE, REC_INGR_QNT) VALUES 
+      	<foreach collection="recipeIngrVoList" item="vo" open="(" separator="), (" close=")">
+      		#{recNo}, #{vo.ingrCode}, #{vo.recIngrQnt}
+      	</foreach>
+	</insert>
+	
+	<insert id="insertRecipeStep" parameterType="RecipeVO">
+		<selectKey resultType="long" keyProperty="recNo" order="BEFORE">
+        	SELECT MAX(REC_NO) AS recNo FROM TKK_RECIPE
+      	</selectKey>
+      	
+      	INSERT INTO TKK_RECIPE_STEP (STEP_NO, STEP_CONTENT, STEP_TIME, REC_NO) VALUES
+      	<foreach collection="recipeStepVoList" item="vo" open="(" separator="), (" close=")">
+      		#{vo.stepNo}, #{vo.stepContent}, #{vo.stepTime}, #{recNo}
+      	</foreach>
+	</insert>
 
 </mapper>

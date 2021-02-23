@@ -35,6 +35,8 @@ public class RecipeController {
 		
 		try {
 			recipeService.insertRecipe(recipeVO);
+			recipeService.insertRecipeIngr(recipeVO);
+			recipeService.insertRecipeStep(recipeVO);
 			rttr.addFlashAttribute("msg", "success");			
 		} catch (Exception e) {
 			log.info("recipe insert error!!! : " + e.getMessage());

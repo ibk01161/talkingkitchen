@@ -14,7 +14,7 @@ import lombok.ToString;
 public class RecipeStepVO {
 
 	private int stepNo;
-	private String setpContent;
+	private String stepContent;
 	private int stepTime;
 	private long recNo;
 	
