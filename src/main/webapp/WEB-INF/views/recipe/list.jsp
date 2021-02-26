@@ -2,13 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../commons/header.jsp" %>
 <body>
-
-insert success...
-
 <div class="jbContent">
    <article class="container">
         <div class="page-header">
           <h1><a href="${app}/recipe/list">레시피</a></h1>
+          <button type="button" class="btn btn-primary" id="rec_insert">레시피 등록</button>
         </div>
         
         <div class="row">
@@ -18,7 +16,7 @@ insert success...
         	<div class="col-sm-6 col-md-4">
         		<div class="thumbnail">
         			<!-- <a href='./" + data.pageVO['pg'] + "/" + val['rec_no'] + "'> -->
-        			<img src='${app}/resources/img/pic.gif' style='width:350px; height:250px'/><!-- </a> -->
+        			<img src='${app}/displayFile?fileName=${list.attachVO.attachPath}/${list.attachVO.attachName}' style='width:350px; height:250px'/><!-- </a> -->
         			<hr style='border: none; border: 1px dashed #BDBDBD;'>
         			
         			<div class='caption'>
@@ -64,8 +62,13 @@ insert success...
 	if (result == "success") {
 		alert('글이 등록되었습니다.');
 	} else if (result == "fail") {
-			alert('글 등록 실패');
-		}
+		alert('글 등록 실패');
+	}
+
+	// 등록하기버튼
+	$('#rec_insert').click(function(){
+	   location.href = '/recipe/insert';
+	});
 
 </script>
 

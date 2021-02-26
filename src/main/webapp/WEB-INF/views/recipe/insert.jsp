@@ -140,7 +140,7 @@
    <div class="form-group">
    <label for="rec_img">파일 업로드</label>   
       <input type="file" id="rec_img" name="recImg" >
-      <img class="thumbnail" id="rec_thumbnail" src="${app}/resources/img/pic.gif" width="200" height="200"/>   <!-- width="200" height="200" -->
+      <img class="thumbnail" id="rec_thumbnail" src="${app}/resources/img/pic.gif" width="200" height="200" />   <!-- width="200" height="200" -->
    </div><br/><br/>
     
    <h1>재료</h1><br/>
@@ -182,7 +182,7 @@
    		
    		<div class='col-sm-5'>
    		<input type='file' id='step_img' name='recipeStepVoList[0].stepImg' >
-   		<img class='thumbnail' id='step_thumbnail' src='${app}/resources/img/pic_plus.gif' />
+   		<img class='thumbnail' id='step_thumbnail' src='${app}/resources/img/pic_plus.gif' width="300" height="300" />
    		</div>
    	</div>
    
@@ -204,7 +204,7 @@
 // 	});
 
 	$('#insert_cancel').click(function(){
-		location.href="/";
+		location.href="/recipe/list";
 	});
 
 // 	function validate(){
