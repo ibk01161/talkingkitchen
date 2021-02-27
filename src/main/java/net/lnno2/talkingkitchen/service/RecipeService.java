@@ -1,6 +1,7 @@
 package net.lnno2.talkingkitchen.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import lombok.extern.slf4j.Slf4j;
 import net.lnno2.talkingkitchen.domain.AttachVO;
+import net.lnno2.talkingkitchen.domain.RecipeIngredientVO;
 import net.lnno2.talkingkitchen.domain.RecipeStepVO;
 import net.lnno2.talkingkitchen.domain.RecipeVO;
 import net.lnno2.talkingkitchen.mapper.RecipeMapper;
@@ -85,10 +87,35 @@ public class RecipeService {
 		log.info("RecipeStep insert success.....");
 	}
 
-	public List<RecipeVO> selectRecipe() throws Exception {
-		return recipeMapper.selectRecipe();
+	public List<RecipeVO> getRecipeList() throws Exception {
+		return recipeMapper.getRecipeList();
 	}
 
+	public RecipeVO getRecipeDetail(long recNo) {
+		
+		log.info("recipeService_recNo : " + recNo);
+		
+		// 레시피 정보 가져오기
+		RecipeVO recipeVO = new RecipeVO();
+		recipeVO = recipeMapper.getRecipeDetail(recNo);
+
+		// 레시피 재료 정보 가져오기
+		List<RecipeIngredientVO> ingrList = new ArrayList<>();
+		ingrList = recipeMapper.getIngrDetail(recNo);
+		recipeVO.setRecipeIngrVoList(ingrList);
+		
+		// 레시피 스탭 정보 가져오기
+		List<RecipeStepVO> stepList = new ArrayList<>();
+		stepList = recipeMapper.getStepDetail(recNo);
+		recipeVO.setRecipeStepVoList(stepList);
+		
+		// 레시피 첨부파일 정보 가져오기
+		List<AttachVO> attachList = new ArrayList<>();
+		attachList = recipeMapper.getAttachInfo(recNo);
+		recipeVO.setAttachVoList(attachList);
+		
+		return recipeVO;
+	}
 	
 	
 }

@@ -15,14 +15,14 @@
         
         	<div class="col-sm-6 col-md-4">
         		<div class="thumbnail">
-        			<!-- <a href='./" + data.pageVO['pg'] + "/" + val['rec_no'] + "'> -->
-        			<img src='${app}/displayFile?fileName=${list.attachVO.attachPath}/${list.attachVO.attachName}' style='width:350px; height:250px'/><!-- </a> -->
+        			<a href="list/${list.recNo}">
+        			<img src='${app}/displayFile?fileName=${list.attachVO.attachPath}/${list.attachVO.attachName}' style='width:350px; height:250px'/></a>
         			<hr style='border: none; border: 1px dashed #BDBDBD;'>
         			
         			<div class='caption'>
-        			<!-- <a href> -->
+        			<a href="list/${list.recNo}">
         			<h3 id='rec_title'>${list.recTitle}</h3>
-        			<p class='help-block' id='rec_intro'>${list.recIntro}</p><!-- </a> -->
+        			<p class='help-block' id='rec_intro'>${list.recIntro}</p></a>
         			<hr style='border: none; border: 1px dashed #BDBDBD;'>
         		
         			<div class='row'>

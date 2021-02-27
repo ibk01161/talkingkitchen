@@ -39,11 +39,36 @@
       	</foreach>
 	</insert>
 	
-	<select id="selectRecipe" resultType="RecipeVO">
+	<select id="getRecipeList" resultType="RecipeVO">
 		SELECT R.REC_NO, R.REC_TITLE, R.REC_INTRO, R.REC_PORTION, R.REC_TIME, R.REC_LEVEL, R.REC_READ_CNT, R.REG_DATE, A.ATTACH_PATH AS "attachVO.attachPath", A.ATTACH_NAME AS "attachVO.attachName"
 		FROM TKK_RECIPE R INNER JOIN TKK_ATTACH A ON R.REC_NO = A.REC_NO
 		AND A.STEP_NO = '0'
 		ORDER BY REG_DATE DESC
+	</select>
+	
+	<select id="getRecipeDetail" parameterType="long" resultType="RecipeVO">
+			SELECT *
+			FROM TKK_RECIPE
+			WHERE REC_NO = #{recNo}
+	</select>
+	
+	<select id="getIngrDetail" parameterType="long" resultType="RecipeIngredientVO">
+		SELECT * 
+		FROM TKK_RECIPE_INGR
+		WHERE REC_NO = #{recNo}
+	</select>
+	
+	<select id="getStepDetail" parameterType="long" resultType="RecipeIngredientVO">
+		SELECT *
+		FROM TKK_RECIPE_STEP 
+		WHERE REC_NO = #{recNo}
+	</select>
+	
+	<select id="getAttachInfo" parameterType="long" resultType="AttachVO">
+		SELECT *
+		FROM TKK_ATTACH 
+		WHERE REC_NO = #{recNo}
+		ORDER BY STEP_NO
 	</select>
 
 </mapper>
