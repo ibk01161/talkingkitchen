@@ -16,7 +16,7 @@
         	<div class="col-sm-6 col-md-4">
         		<div class="thumbnail">
         			<a href="list/${list.recNo}">
-        			<img src='${app}/displayFile?fileName=${list.attachVO.attachPath}/${list.attachVO.attachName}' style='width:350px; height:250px'/></a>
+        			<img src='${app}/displayFile?fileName=${list.attachVo.attachPath}/${list.attachVo.attachName}' style='width:350px; height:250px'/></a>
         			<hr style='border: none; border: 1px dashed #BDBDBD;'>
         			
         			<div class='caption'>

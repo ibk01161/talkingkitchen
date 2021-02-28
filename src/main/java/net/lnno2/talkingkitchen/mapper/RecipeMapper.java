@@ -29,9 +29,4 @@ public interface RecipeMapper {
 
 	List<RecipeStepVO> getStepDetail(long recNo);
 
-	List<AttachVO> getAttachInfo(long recNo);
-
-
-	
-
 }

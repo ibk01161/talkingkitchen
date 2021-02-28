@@ -39,7 +39,6 @@ public class RecipeVO {
 	private List<RecipeIngredientVO> recipeIngrVoList;
 	private List<RecipeStepVO> recipeStepVoList;
 	
-	private AttachVO attachVO;
-	// 디테일 페이지에서 사진 정보를 뿌려주기 위해..
-	private List<AttachVO> attachVoList;
+	// 레시피 사진 정보를 가져오기 위해...
+	private AttachVO attachVo;
 }

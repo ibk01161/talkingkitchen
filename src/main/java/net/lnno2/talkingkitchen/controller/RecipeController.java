@@ -69,7 +69,7 @@ public class RecipeController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("msg", e.getMessage());
-			model.addAttribute("url", "recipe/list");
+			model.addAttribute("url", "../list");
 			return "forward";
 		}
 		

@@ -109,11 +109,6 @@ public class RecipeService {
 		stepList = recipeMapper.getStepDetail(recNo);
 		recipeVO.setRecipeStepVoList(stepList);
 		
-		// 레시피 첨부파일 정보 가져오기
-		List<AttachVO> attachList = new ArrayList<>();
-		attachList = recipeMapper.getAttachInfo(recNo);
-		recipeVO.setAttachVoList(attachList);
-		
 		return recipeVO;
 	}
 	

@@ -20,4 +20,7 @@ public class RecipeStepVO {
 	
 	private MultipartFile stepImg;
 	
+	// 레시피 스탭 이미지를 가져오기 위해
+	private AttachVO attachVo;
+	
 }
