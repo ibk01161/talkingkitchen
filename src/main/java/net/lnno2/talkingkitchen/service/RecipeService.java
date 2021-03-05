@@ -74,9 +74,12 @@ public class RecipeService {
 				attachVO.setAttachName(stepImgName);
 				attachVO.setAttachPath(UploadFileUtils.makeDir());
 				attachVO.setStepNo(vo.getStepNo());
+				
+				log.info("insertStep_attachVO : " + attachVO);
 			}
 			
 			recipeMapper.insertRecipeStep(recipeVO);
+//			recipeMapper.insertRecipeStepAttach(attachVO);
 			recipeMapper.insertRecipeAttach(attachVO);
 			
 		} catch (IOException e) {

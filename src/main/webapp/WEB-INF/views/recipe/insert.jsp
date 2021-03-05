@@ -175,33 +175,37 @@
    
    		<!-- 요리 순서 -->
 		<h1>요리 순서</h1>
-   
-		<div class='form-horizontal'>
-			<div class='form-group'>
-			<label for='rec_step' class='col-sm-2 control-label'>Step</label>
-				<div class='col-sm-7'>
-					<input type='text' id='step_no' name='recipeStepVoList[0].stepNo' value='1' />
-						<textarea class='form-control' rows='6' id='step_content' name='recipeStepVoList[0].stepContent' placeholder='예) 당근을 작게 깍둑썰기 해주세요.'></textarea>
-   				</div>
-   			</div>
-   			<p></p>
    		
-   			<div class='form-group'>
-   			<label for='step_time' class='col-sm-2 control-label'>시간</label>
-   				<div class='col-sm-5'>
-   					<input type='number' class='form-control' id='step_time' name='recipeStepVoList[0].stepTime' placeholder='각 단계별 소요시간을 분 단위로 입력해주세요.'/>
-   				</div>
-   			</div>
+<!-- 		<div class='form-horizontal'> -->
+<!-- 			<div class='form-group'> -->
+<!-- 			<label for='rec_step' class='col-sm-2 control-label'>Step</label> -->
+<!-- 				<div class='col-sm-7'> -->
+<!-- 					<input type='text' id='step_no' name='recipeStepVoList[0].stepNo' value='1' /> -->
+<!-- 						<textarea class='form-control' rows='6' id='step_content' name='recipeStepVoList[0].stepContent' placeholder='예) 당근을 작게 깍둑썰기 해주세요.'></textarea> -->
+<!--    				</div> -->
+<!--    			</div> -->
+<!--    			<p></p> -->
    		
-			<div class='col-sm-5'>
-				<input type='file' id='step_img' name='recipeStepVoList[0].stepImg' >
-				<img class='thumbnail' id='step_thumbnail' src='${app}/resources/img/pic_plus.gif' width="200" height="200" />
-			</div>
-   		</div>
+<!--    			<div class='form-group'> -->
+<!--    			<label for='step_time' class='col-sm-2 control-label'>시간</label> -->
+<!--    				<div class='col-sm-5'> -->
+<!--    					<input type='number' class='form-control' id='step_time' name='recipeStepVoList[0].stepTime' placeholder='각 단계별 소요시간을 분 단위로 입력해주세요.'/> -->
+<!--    				</div> -->
+<!--    			</div> -->
+   		
+<!-- 			<div class='col-sm-5'> -->
+<!-- 				<input type='file' id='step_img' name='recipeStepVoList[0].stepImg' > -->
+<%-- 				<img class='thumbnail' id='step_thumbnail' src='${app}/resources/img/pic_plus.gif' width="200" height="200" /> --%>
+<!-- 			</div> -->
+<!--    		</div> -->
+			<div id="rec_step"></div>
+   			<p align="center">
+      			<button type="button" class="btn btn-primary btn-lg" onclick="add_step()">추가</button>
+   			</p>
    
 		<div class="form-group text-center">
-			<input type="submit" class="btn btn-success btn-lg" id="insert_btn" value="등록">
-			<input type="button" value="취소"class="btn btn-danger btn-lg" id="insert_cancel"/>
+			<button type="button" class="btn btn-success btn-lg" id="insert_btn">등록</button>
+			<button type="button" class="btn btn-danger btn-lg" id="insert_cancel">취소</button>
 		</div>
     
    </form>
@@ -211,8 +215,10 @@
 <script>
 
 	var ingr_n = 0;
+	var step_n = 0;
 
 	add_ing();
+	add_step();
 
 	function add_ing() {
 
@@ -239,6 +245,30 @@
 
 	}
 
+	function add_step() {
+
+		step_n += 1;
+
+		var new_step = "<div class='form-horizontal'>";
+		new_step += "<div class='form-group'>";
+		new_step += "<label for='rec_step"+ step_n + "' class='col-sm-2 control-label'>Step"+ step_n + "</label>";
+		new_step += "<div class='col-sm-7'>";
+		new_step += "<input type='text' name='recipeStepVoList[" + (step_n-1) + "].stepNo' value='" + (step_n) + "' />" //hidden
+		new_step += "<textarea class='form-control' rows='6' id='rec_step"+ step_n + "' name='recipeStepVoList[" + (step_n-1) + "].stepContent' placeholder='예) 당근을 작게 깍둑썰기 해주세요.'></textarea>";
+		new_step += "</div></div><p></p>";
+		new_step += "<div class='form-group'>";
+		new_step += "<label for='step_time"+step_n + "' class='col-sm-2 control-label'>시간</label>";
+		new_step += "<div class='col-sm-5'>";
+		new_step += "<input type='number' class='form-control' id='step_time"+step_n + "' name='recipeStepVoList[" + (step_n-1) + "].stepTime' placeholder='각 단계별 소요시간을 분 단위로 입력해주세요.'/></div>";
+		new_step += "<div class='col-sm-5'>";
+		new_step += "<input type='file' onchange='stepReadUrl(this, " + step_n + ");' name='recipeStepVoList[" + (step_n-1) + "].stepImg' >";
+		new_step += "<img class='step_thumbnail' id='a" + step_n + "' src='${app}/resources/img/pic_plus.gif' width='200' height='200' />";
+		new_step += "</div></div>";
+
+		$('#rec_step').append(new_step);
+
+	}
+
 // 	let f = document.insert;
 	var recipeFrom = $("form[name='recipeForm']");
 
@@ -259,7 +289,7 @@
 // 		f.action = 'insert';
 // 		f.submit();
 
-		if ($('#rec_title').val == '') {
+		if ($('#rec_title').val() == '') {
 			alert('레시피 제목을 입력해주세요');
 			$('#rec_title').focus();
 			return;
@@ -277,10 +307,9 @@
 	});
 
 	// 이미지 미리보기 (스탭사진)
-	$('#step_img').change(function() {
-		stepReadUrl(this);
-	});
-
+// 	$('#step_img').change(function() {
+// 		stepReadUrl(this);
+// 	});
 
 	function recReadUrl(input) {
 		if (input.files && input.files[0]) {
@@ -294,12 +323,12 @@
 		}
 	}
 
-	function stepReadUrl(input) {
+	function stepReadUrl(input, index) {
 		if (input.files && input.files[0]) {
 			var reader = new FileReader();
 			
 			reader.onload = function(e) {
-				$('#step_thumbnail').attr('src', e.target.result);
+				$('#a' + index).attr('src', e.target.result);
 			}
 
 			reader.readAsDataURL(input.files[0]);

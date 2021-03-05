@@ -41,4 +41,7 @@ public class RecipeVO {
 	
 	// 레시피 사진 정보를 가져오기 위해...
 	private AttachVO attachVo;
+	
+	// 레시피 스탭 이미지 insert
+//	private List<AttachVO> attachVoList;
 }

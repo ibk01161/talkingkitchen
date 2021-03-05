@@ -20,6 +20,8 @@ public interface RecipeMapper {
 	void insertRecipeIngr(RecipeVO recipeVO) throws SQLException;
 
 	void insertRecipeStep(RecipeVO recipeVO) throws SQLException;
+	
+//	void insertRecipeStepAttach(AttachVO attachVO);
 
 	List<RecipeVO> getRecipeList() throws SQLException;
 
